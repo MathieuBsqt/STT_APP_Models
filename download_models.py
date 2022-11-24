@@ -1,29 +1,35 @@
 from transformers import pipeline, Wav2Vec2Tokenizer, Wav2Vec2ForCTC, T5Tokenizer, T5ForConditionalGeneration, HubertForCTC, Wav2Vec2Processor
 import pickle
 
-# 1 - English Speech to Text Model
-model_name = "facebook/hubert-large-ls960-ft"
-model = HubertForCTC.from_pretrained(model_name)
-processor = Wav2Vec2Processor.from_pretrained(model_name)
+def load_models():
+    # 1 - English Speech to Text Model
+    model_name = "facebook/hubert-large-ls960-ft"
+    model = HubertForCTC.from_pretrained(model_name)
+    processor = Wav2Vec2Processor.from_pretrained(model_name)
 
-pickle.dump(model, open("/workspace/speech_to_text_app_models/STT_processor_hubert-large-ls960-ft.sav", 'wb'))
-pickle.dump(processor, open("/workspace/speech_to_text_app_models/STT_model_hubert-large-ls960-ft.sav", 'wb'))
+    pickle.dump(model, open("/workspace/speech_to_text_app_models/STT_processor_hubert-large-ls960-ft.sav", 'wb'))
+    pickle.dump(processor, open("/workspace/speech_to_text_app_models/STT_model_hubert-large-ls960-ft.sav", 'wb'))
 
-# 2 - Summarization Model
-summarizer = pipeline("summarization")
-pickle.dump(summarizer, open("/workspace/speech_to_text_app_models/summarizer.sav", 'wb'))
+    # 2 - Summarization Model
+    summarizer = pipeline("summarization")
+    pickle.dump(summarizer, open("/workspace/speech_to_text_app_models/summarizer.sav", 'wb'))
 
-# 3 - Other English Speech to Text Model
-STT_tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
-STT_model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
+    # 3 - Other English Speech to Text Model
+    STT_tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
+    STT_model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
 
-pickle.dump(STT_model, open("/workspace/speech_to_text_app_models/STT_model2_wav2vec2-large-960h-lv60-self.sav", 'wb'))
-pickle.dump(STT_tokenizer, open("/workspace/speech_to_text_app_models/STT_tokenizer2_wav2vec2-large-960h-lv60-self.sav", 'wb'))
+    pickle.dump(STT_model, open("/workspace/speech_to_text_app_models/STT_model2_wav2vec2-large-960h-lv60-self.sav", 'wb'))
+    pickle.dump(STT_tokenizer, open("/workspace/speech_to_text_app_models/STT_tokenizer2_wav2vec2-large-960h-lv60-self.sav", 'wb'))
 
-# 4 - Auto Punctuation Model
-T5_tokenizer = T5Tokenizer.from_pretrained("flexudy/t5-small-wav2vec2-grammar-fixer")
-T5_model = T5ForConditionalGeneration.from_pretrained("flexudy/t5-small-wav2vec2-grammar-fixer")
+    # 4 - Auto Punctuation Model
+    T5_tokenizer = T5Tokenizer.from_pretrained("flexudy/t5-small-wav2vec2-grammar-fixer")
+    T5_model = T5ForConditionalGeneration.from_pretrained("flexudy/t5-small-wav2vec2-grammar-fixer")
 
-pickle.dump(T5_tokenizer, open("/workspace/speech_to_text_app_models/T5_tokenizer.sav", 'wb'))
-pickle.dump(T5_model, open("/workspace/speech_to_text_app_models/T5_model.sav", 'wb'))
+    pickle.dump(T5_tokenizer, open("/workspace/speech_to_text_app_models/T5_tokenizer.sav", 'wb'))
+    pickle.dump(T5_model, open("/workspace/speech_to_text_app_models/T5_model.sav", 'wb'))
 
+    return 0
+
+if __name__ == '__main__':
+    load_models()
+    print("done")
