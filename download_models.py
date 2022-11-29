@@ -8,9 +8,9 @@ def load_models():
     model = HubertForCTC.from_pretrained(model_name)
     processor = Wav2Vec2Processor.from_pretrained(model_name)
 
-    pickle.dump(model, open("/workspace/speech_to_text_app_models/STT_processor_hubert-large-ls960-ft.sav", 'wb'))
-    pickle.dump(processor, open("/workspace/speech_to_text_app_models/STT_model_hubert-large-ls960-ft.sav", 'wb'))
-
+    pickle.dump(model, open("/workspace/speech_to_text_app_models/STT_model_hubert-large-ls960-ft.sav", 'wb'))
+    pickle.dump(processor, open("/workspace/speech_to_text_app_models/STT_processor_hubert-large-ls960-ft.sav", 'wb'))
+    
     # 2 - Summarization Model
     summarizer = pipeline("summarization")
     pickle.dump(summarizer, open("/workspace/speech_to_text_app_models/summarizer.sav", 'wb'))
