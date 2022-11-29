@@ -29,16 +29,8 @@ def load_models():
 
     pickle.dump(T5_tokenizer, open("/workspace/speech_to_text_app_models/spiece.model", 'wb'))
     pickle.dump(T5_model, open("/workspace/speech_to_text_app_models/T5_model.sav", 'wb'))
-
-    # 4 - Auto Punctuation Model
-    model_name = "flexudy/t5-small-wav2vec2-grammar-fixer"
-    T5_tokenizer = T5Tokenizer.from_pretrained(model_name)
-    T5_model = T5ForConditionalGeneration.from_pretrained(model_name)
-
-    pickle.dump(T5_tokenizer, open("/workspace/speech_to_text_app_models/spiece.model", 'wb'))
-    pickle.dump(T5_model, open("/workspace/speech_to_text_app_models/T5_model.sav", 'wb'))
     
-    # Diarization model - Can't be saved anymore since pyannote.audio v2
+    # 5 - Diarization model - Can't be saved anymore since pyannote.audio v2
    
 
 if __name__ == '__main__':
