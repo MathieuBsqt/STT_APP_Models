@@ -1,10 +1,7 @@
 from transformers import pipeline, Wav2Vec2Tokenizer, Wav2Vec2ForCTC, T5Tokenizer, T5ForConditionalGeneration, HubertForCTC, Wav2Vec2Processor
 import pickle
 import torch 
-import os
 
-if not os.path.exists("../workspace"):
-    os.makedirs("../workspace")
         
 def load_models():
     # 1 - English Speech to Text Model
