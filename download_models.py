@@ -2,6 +2,9 @@ from transformers import pipeline, Wav2Vec2Tokenizer, Wav2Vec2ForCTC, T5Tokenize
 import pickle
 import torch 
 
+if not os.path.exists("/workspace"):
+    os.makedirs("/workspace")
+        
 def load_models():
     # 1 - English Speech to Text Model
     model_name = "facebook/hubert-large-ls960-ft"
