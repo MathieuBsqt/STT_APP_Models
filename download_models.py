@@ -3,8 +3,8 @@ import pickle
 import torch 
 import os
 
-if not os.path.exists("/workspace"):
-    os.makedirs("/workspace")
+if not os.path.exists("../workspace"):
+    os.makedirs("../workspace")
         
 def load_models():
     # 1 - English Speech to Text Model
